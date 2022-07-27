@@ -1,20 +1,27 @@
 <ion-content>
     <div class="flex-center">
-        <ion-card>
-            <ion-card-header>
-                <ion-card-subtitle color="success"><b>Movie's Feed</b></ion-card-subtitle>
-            </ion-card-header>
-            <ion-card-content>
-                <ion-item>
-                    <ion-label position="floating">Login</ion-label>
-                    <ion-input type="email"></ion-input>
-                </ion-item>
-                <ion-item>
-                    <ion-label position="floating">Password</ion-label>
-                    <ion-input type="password"></ion-input>
-                </ion-item>
-                <ion-button color="success" size="full" (click)="login()">Login</ion-button>
-            </ion-card-content>
-        </ion-card>
+        <form [formGroup]="form">
+            <ion-card>
+                <ion-card-header>
+                    <ion-card-subtitle color="success"><b>Movie's Feed</b></ion-card-subtitle>
+                </ion-card-header>
+                <ion-card-content>
+                    <ion-item>
+                        <ion-label position="floating">Login</ion-label>
+                        <ion-input type="username" formControlName="username"></ion-input>
+                    </ion-item>
+                    <ion-label color="danger" *ngIf="!form.get('username').errors?.required && form.get('username').touched">Username is mandatory.</ion-label><br>
+                    <ion-label color="danger" *ngIf="!form.get('username').errors?.email && form.get('username').touched">Username is invalid.</ion-label>
+                    <ion-item>
+                        <ion-label position="floating">Password</ion-label>
+                        <ion-input type="password" formControlName="password"></ion-input>
+                    </ion-item>
+                    <ion-label color="danger" *ngIf="!form.get('password').errors?.required && form.get('password').touched">Password is mandatory.</ion-label>
+                    <br><br>
+                    <ion-button color="success" size="full" [disabled]="!form.valid"
+                        (click)="login()">Login</ion-button>
+                </ion-card-content>
+            </ion-card>
+        </form>
     </div>
 </ion-content>
