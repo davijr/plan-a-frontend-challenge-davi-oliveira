@@ -1,19 +1,25 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TestBed, waitForAsync } from '@angular/core/testing';
+import { Router } from '@angular/router';
 
 import { RouterTestingModule } from '@angular/router/testing';
+import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
 
+  let router: Router;
 
   beforeEach(waitForAsync(() => {
 
     TestBed.configureTestingModule({
       declarations: [AppComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      imports: [ RouterTestingModule.withRoutes([])],
+      imports: [
+        RouterTestingModule.withRoutes([]),
+        AppRoutingModule
+      ],
     }).compileComponents();
   }));
 
@@ -23,24 +29,13 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   }));
 
-  it('should have menu labels', waitForAsync(() => {
+  it('should go to login page when logout', () => {
     const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const app = fixture.nativeElement;
-    const menuItems = app.querySelectorAll('ion-label');
-    expect(menuItems.length).toEqual(12);
-    expect(menuItems[0].textContent).toContain('Inbox');
-    expect(menuItems[1].textContent).toContain('Outbox');
-  }));
-
-  it('should have urls', waitForAsync(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const app = fixture.nativeElement;
-    const menuItems = app.querySelectorAll('ion-item');
-    expect(menuItems.length).toEqual(12);
-    expect(menuItems[0].getAttribute('ng-reflect-router-link')).toEqual('/folder/Inbox');
-    expect(menuItems[1].getAttribute('ng-reflect-router-link')).toEqual('/folder/Outbox');
-  }));
+    const app = fixture.debugElement.componentInstance;
+    router = TestBed.get(Router);
+    spyOn(router, 'navigate');
+    app.logout();
+    expect(router.navigate).toHaveBeenCalledWith(['login']);
+  });
 
 });
