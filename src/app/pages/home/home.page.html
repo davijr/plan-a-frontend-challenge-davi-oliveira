@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Movie's Feed</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <app-movie-info-list [movieList]="['movie1', 'movie2', 'nothing']"></app-movie-info-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="success">
+      <ion-icon name="refresh"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  
+</ion-content>
