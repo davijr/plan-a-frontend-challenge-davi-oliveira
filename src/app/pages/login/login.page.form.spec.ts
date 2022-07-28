@@ -19,21 +19,9 @@ describe('LoginPageForm', () => {
         expect(form.get('password').valid).toBeFalsy();
     });
 
-    it('should have username invalid if email is not valid', () => {
-        form.get('username').setValue('invalid email');
-
-        expect(form.get('username').valid).toBeFalsy();
-    });
-
-    it('should have username valid if email is valid', () => {
-        form.get('username').setValue('valid@email.com');
-
-        expect(form.get('username').valid).toBeTruthy();
-    });
-
     it('should have a valid form', () => {
-        form.get('username').setValue('valid@email.com');
-        form.get('password').setValue('password');
+        form.get('username').setValue('anyUsername');
+        form.get('password').setValue('anyPassword');
 
         expect(form.valid).toBeTruthy();
     });

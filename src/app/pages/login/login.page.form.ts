@@ -8,7 +8,7 @@ export class LoginPageForm {
 
     createForm(): FormGroup {
         return this.formBuilder.group({
-            username: [null, [Validators.required, Validators.email]],
+            username: [null, Validators.required],
             password: [null, Validators.required]
         });
     }

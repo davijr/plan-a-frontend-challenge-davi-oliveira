@@ -29,13 +29,4 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   }));
 
-  it('should go to login page when logout', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    router = TestBed.get(Router);
-    spyOn(router, 'navigate');
-    app.logout();
-    expect(router.navigate).toHaveBeenCalledWith(['login']);
-  });
-
 });
