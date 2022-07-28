@@ -1,7 +1,8 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
+import { StoreModule } from '@ngrx/store';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 
 import { LoginPage } from './login.page';
@@ -17,7 +18,8 @@ describe('LoginPage', () => {
       imports: [
         IonicModule.forRoot(),
         AppRoutingModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        StoreModule.forRoot([])
       ]
     }).compileComponents();
 
@@ -37,9 +39,10 @@ describe('LoginPage', () => {
     expect(component.form).not.toBeUndefined();
   });
 
-  it('should go to home page on login', () => {
+  it('should go to home page on login', fakeAsync(() => {
     spyOn(router, 'navigate');
     component.login();
+    tick(1500);
     expect(router.navigate).toHaveBeenCalledWith(['home']);
-  });
+  }));
 });

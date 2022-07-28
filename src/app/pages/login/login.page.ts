@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/store/AppState';
+import { hide, show } from 'src/store/loading/loading.actions';
 import { LoginPageForm } from './login.page.form';
 
 @Component({
@@ -14,7 +17,8 @@ export class LoginPage implements OnInit {
 
   constructor(
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private store: Store<AppState>
   ) { }
 
   ngOnInit() {
@@ -22,6 +26,10 @@ export class LoginPage implements OnInit {
   }
 
   login() {
-    this.router.navigate(['home']);
+    this.store.dispatch(show());
+    setTimeout(() => {
+      this.store.dispatch(hide());
+      this.router.navigate(['home']);
+    }, 1000);
   }
 }

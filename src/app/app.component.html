@@ -1,6 +1,6 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
-    <ion-menu contentId="main-content" type="overlay">
+    <ion-menu contentId="main-content" type="overlay" *ngIf="false">
       <ion-content>
         <ion-list id="inbox-list">
           <ion-list-header>Movie's Feed</ion-list-header>
@@ -20,4 +20,5 @@
     </ion-menu>
     <ion-router-outlet id="main-content"></ion-router-outlet>
   </ion-split-pane>
+  <app-loading></app-loading>
 </ion-app>
