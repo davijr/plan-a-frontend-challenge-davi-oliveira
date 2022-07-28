@@ -1,0 +1,26 @@
+
+ion-card {
+    margin: 0;
+    border-radius: 0;
+    
+    ion-card-subtitle {
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+
+    h2, ion-title {
+        text-transform: uppercase;
+        font-weight: bolder;
+    }
+
+    p {
+        white-space: normal;
+        margin-bottom: 1rem;
+    }
+
+    ion-title {
+        position: relative;
+        padding-left: 0;
+        text-align: start;
+    }
+}

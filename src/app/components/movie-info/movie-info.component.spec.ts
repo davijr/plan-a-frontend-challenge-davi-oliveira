@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { MovieInfoListComponent } from './movie-info-list.component';
+import { MovieInfoListComponent } from './movie-info.component';
 
-describe('MovieInfoListComponent', () => {
+describe('MovieInfoComponent', () => {
   let component: MovieInfoListComponent;
   let fixture: ComponentFixture<MovieInfoListComponent>;
 

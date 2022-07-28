@@ -1,0 +1,37 @@
+
+<ion-card>
+  <img *ngIf="movie?.backdrop_path" [src]="movie?.backdrop_path">
+  <img *ngIf="!movie?.backdrop_path" src="assets/img/movie-poster.jpg" style="width: 100%;" alt="No backdrop available."/>
+  <ion-card-header>
+    <ion-card-subtitle *ngIf="movie?.genres?.length > 0">
+      GENRE(S): 
+      <span *ngFor="let genre of movie?.genres; let i = index"> {{ genre.name }}
+        <span *ngIf="i !== (movie?.genres?.length - 1)">,</span>
+      </span>
+    </ion-card-subtitle>
+    <ion-card-title>
+      <h2>{{ movie?.title }}</h2>
+    </ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-text *ngIf="movie?.status">
+      <ion-title color="success">Status</ion-title>
+      {{ movie?.status }}<br><br>
+    </ion-text>
+    <ion-text *ngIf="movie?.original_title">
+      <ion-title color="success">Original title</ion-title>{{ movie?.original_title }}<br><br>
+    </ion-text>
+    <ion-text *ngIf="movie?.spoken_languages?.length > 0">
+      <ion-title color="success">Spoken languages</ion-title> 
+      <span *ngFor="let language of movie?.spoken_languages">{{ language?.name }}</span><br><br>
+    </ion-text>
+    <ion-text *ngIf="movie?.overview">
+      <ion-title color="success">Overview</ion-title> {{ movie?.overview }}<br><br>
+    </ion-text>
+    <div *ngIf="movie?.homepage">
+      <br>
+      <ion-button expand="full" color="success" (click)="goToHomepage(movie?.homepage)">See more...</ion-button>
+    </div>
+  </ion-card-content>
+</ion-card>
+<br><br>
